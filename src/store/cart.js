@@ -1,5 +1,3 @@
-import { generateUID } from "../utils";
-
 // Constant menu
 const menu = [
   {
@@ -43,14 +41,16 @@ const initial = [
       price: 10,
       name: "Norvegienne",
     },
+    count: 3,
   },
   {
     id: "yaUx",
     item: {
       id: "hPs",
-      price: 10,
+      price: 9,
       name: "Tartare",
     },
+    count: 1,
   },
 ];
 
@@ -58,15 +58,26 @@ const initial = [
 function cartReducer(state = initial, action) {
   switch (action.type) {
     case "INCREMENT":
-      return [
-        ...state,
-        {
-          id: generateUID(),
-          item: {
-            ...menu.filter((item) => action.payload === item.id)[0],
-          },
-        },
-      ];
+      return state.map((order) => {
+        if (order.id === action.payload) {
+          return {
+            ...order,
+            count: order.count + 1,
+          };
+        }
+        return order;
+      });
+
+    case "DECREMENT":
+      return state.map((order) => {
+        if (order.id === action.payload) {
+          return {
+            ...order,
+            count: order.count - 1,
+          };
+        }
+        return order;
+      });
 
     default:
       return state;

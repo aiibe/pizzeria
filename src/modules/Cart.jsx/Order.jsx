@@ -9,20 +9,20 @@ export default function Order({ each, increment, decrement }) {
         <div className="flex items-center">
           <div className="flex items-center mr-6">
             <button
-              onClick={() => increment(each.item.id)}
+              onClick={() => increment(each.id)}
               className="focus:outline-none font-bold bg-white bg-opacity-20 py-1 px-3 w-10 rounded"
             >
               +
             </button>
-            <p className="mx-4">1</p>
+            <p className="mx-2 w-5 text-center">{each.count}</p>
             <button
-              onClick={() => decrement(each.item.id)}
+              onClick={() => decrement(each.id)}
               className="focus:outline-none font-bold bg-white bg-opacity-20 py-1 px-3 w-10 rounded"
             >
               -
             </button>
           </div>
-          <p className="font-bold">
+          <p className="font-bold w-10 text-right">
             {each.item.price} {currency}
           </p>
         </div>
