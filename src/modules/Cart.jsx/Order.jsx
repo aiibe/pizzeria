@@ -6,12 +6,12 @@ export default function Order({
   currency,
 }) {
   function decrementOrRemove() {
-    if (each.count == 0) return remove(each.id);
+    if (each.count <= 1) return remove(each.id);
     decrement(each.id);
   }
 
   return (
-    <div className="w-full p-2 inline-block">
+    <div className="w-full pb-2 inline-block">
       <div className="flex justify-between items-center bg-white bg-opacity-5 hover:bg-opacity-10 rounded-lg py-4 px-6 font-medium text-lg text-white">
         <div>
           <h3 className="">{each.item.name}</h3>

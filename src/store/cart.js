@@ -52,6 +52,16 @@ const initial = [
     },
     count: 1,
   },
+
+  {
+    id: "jIms",
+    item: {
+      id: "nUt",
+      price: 10,
+      name: "Savoyard",
+    },
+    count: 1,
+  },
 ];
 
 // Store reducer

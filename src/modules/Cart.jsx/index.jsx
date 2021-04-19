@@ -10,7 +10,9 @@ function Cart({ cart, removeOrder, incrementOrder, decrementOrder, currency }) {
     <div className="flex-grow">
       <div className="flex flex-col h-full px-4">
         <div className="mb-4">
-          <h1 className="font-bold text-xl text-white text-opacity-20">Cart</h1>
+          <h1 className="font-bold text-2xl text-white text-opacity-20">
+            Cart
+          </h1>
         </div>
         <div className="flex flex-col h-full">
           <div className="flex-grow flex flex-wrap -ml-2 -mt-2">
@@ -28,9 +30,11 @@ function Cart({ cart, removeOrder, incrementOrder, decrementOrder, currency }) {
             </div>
           </div>
           <div className="flex justify-end my-4">
-            <div className="font-bold text-white text-xl">
-              Total {total}
-              {currency}
+            <div className="font-bold text-white text-2xl p-4">
+              Total{" "}
+              <span className="ml-4">
+                {total} {currency}
+              </span>
             </div>
           </div>
         </div>
