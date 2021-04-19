@@ -79,6 +79,9 @@ function cartReducer(state = initial, action) {
         return order;
       });
 
+    case "REMOVE":
+      return state.filter((order) => order.id !== action.payload);
+
     default:
       return state;
   }

@@ -1,5 +1,15 @@
-export default function Order({ each, increment, decrement }) {
-  const currency = "€";
+export default function Order({
+  each,
+  increment,
+  remove,
+  decrement,
+  currency,
+}) {
+  function decrementOrRemove() {
+    if (each.count == 0) return remove(each.id);
+    decrement(each.id);
+  }
+
   return (
     <div className="w-full p-2 inline-block">
       <div className="flex justify-between items-center bg-white bg-opacity-5 hover:bg-opacity-10 rounded-lg py-4 px-6 font-medium text-lg text-white">
@@ -16,7 +26,7 @@ export default function Order({ each, increment, decrement }) {
             </button>
             <p className="mx-2 w-5 text-center">{each.count}</p>
             <button
-              onClick={() => decrement(each.id)}
+              onClick={decrementOrRemove}
               className="focus:outline-none font-bold bg-white bg-opacity-20 py-1 px-3 w-10 rounded"
             >
               -
