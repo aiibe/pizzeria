@@ -24,7 +24,9 @@ export default function Order({
             >
               +
             </button>
-            <p className="mx-2 w-5 text-center">{each.count}</p>
+            <p className="mx-2 w-5 text-center text-base opacity-70">
+              {each.count}
+            </p>
             <button
               onClick={decrementOrRemove}
               className="focus:outline-none font-bold bg-white bg-opacity-20 py-1 px-3 w-10 rounded"
@@ -32,7 +34,7 @@ export default function Order({
               -
             </button>
           </div>
-          <p className="font-bold w-10 text-right">
+          <p className="font-bold w-12 text-right text-xl">
             {each.item.price} {currency}
           </p>
         </div>

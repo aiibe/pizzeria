@@ -6,6 +6,7 @@ function Cart({ cart, removeOrder, incrementOrder, decrementOrder, currency }) {
     (sum, order) => (sum += order.count * order.item.price),
     0
   );
+  const countItems = cart.reduce((sum, order) => (sum += order.count), 0);
   return (
     <div className="flex-grow">
       <div className="flex flex-col h-full px-4">
@@ -30,11 +31,17 @@ function Cart({ cart, removeOrder, incrementOrder, decrementOrder, currency }) {
             </div>
           </div>
           <div className="flex justify-end my-4">
-            <div className="font-bold text-white text-2xl p-4">
-              Total{" "}
-              <span className="ml-4">
-                {total} {currency}
-              </span>
+            <div className="flex flex-col">
+              <div className="flex justify-between items-end text-white opacity-50 px-4 w-56">
+                <span className="text-sm">Ordered</span>
+                <span className="tex-sm font-bold">x {countItems}</span>
+              </div>
+              <div className="flex justify-between items-end text-white px-4 w-56">
+                <span className="text-xl">Total</span>
+                <span className="font-bold text-3xl">
+                  {total} {currency}
+                </span>
+              </div>
             </div>
           </div>
         </div>
