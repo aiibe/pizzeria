@@ -1,4 +1,4 @@
-export default function Order({ each }) {
+export default function Order({ each, increment, decrement }) {
   const currency = "€";
   return (
     <div className="w-full p-2 inline-block">
@@ -8,11 +8,17 @@ export default function Order({ each }) {
         </div>
         <div className="flex items-center">
           <div className="flex items-center mr-6">
-            <button className="focus:outline-none font-bold bg-white bg-opacity-20 py-1 px-3 w-10 rounded">
+            <button
+              onClick={() => increment(each.item.id)}
+              className="focus:outline-none font-bold bg-white bg-opacity-20 py-1 px-3 w-10 rounded"
+            >
               +
             </button>
             <p className="mx-4">1</p>
-            <button className="focus:outline-none font-bold bg-white bg-opacity-20 py-1 px-3 w-10 rounded">
+            <button
+              onClick={() => decrement(each.item.id)}
+              className="focus:outline-none font-bold bg-white bg-opacity-20 py-1 px-3 w-10 rounded"
+            >
               -
             </button>
           </div>

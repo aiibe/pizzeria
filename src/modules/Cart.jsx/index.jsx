@@ -1,7 +1,7 @@
 import Order from "./Order";
 import { connect } from "react-redux";
 
-function Cart({ cart }) {
+function Cart({ cart, incrementOrder, decrementOrder }) {
   return (
     <div className="flex-grow">
       <div className="flex flex-col h-full px-4">
@@ -12,7 +12,12 @@ function Cart({ cart }) {
           <div className="flex-grow flex flex-wrap -ml-2 -mt-2">
             <div className="w-full">
               {cart.map((each) => (
-                <Order key={each.id} each={each} />
+                <Order
+                  key={each.id}
+                  each={each}
+                  increment={incrementOrder}
+                  decrement={decrementOrder}
+                />
               ))}
             </div>
           </div>
@@ -28,4 +33,19 @@ const mapStateProps = ({ cart }) => {
   };
 };
 
-export default connect(mapStateProps)(Cart);
+function mapDispatchProps(dispatch) {
+  return {
+    incrementOrder: (id) =>
+      dispatch({
+        type: "INCREMENT",
+        payload: id,
+      }),
+    decrementOrder: (id) =>
+      dispatch({
+        type: "DECREMENT",
+        payload: id,
+      }),
+  };
+}
+
+export default connect(mapStateProps, mapDispatchProps)(Cart);

@@ -9,7 +9,7 @@ function Steps({ currentStep }) {
   ];
 
   function isActive(id) {
-    return id === currentStep.state;
+    return id === currentStep;
   }
 
   return (
