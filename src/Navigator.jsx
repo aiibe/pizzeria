@@ -9,7 +9,7 @@ function Navigator({ currentStep }) {
     case "step2":
       return <Shipping />;
     default:
-      <Cart />;
+      return null;
   }
 }
 

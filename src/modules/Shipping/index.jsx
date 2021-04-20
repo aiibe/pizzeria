@@ -1,6 +1,28 @@
 import { connect } from "react-redux";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as Yup from "yup";
+
+const shippingSchema = Yup.object().shape({
+  fullName: Yup.string().max(100, "Too long").required("Fullname is required"),
+  email: Yup.string().email("Invalid email").required("Email is required"),
+  fullAddress: Yup.string()
+    .max(255, "Too long")
+    .required("Full address is required"),
+});
 
 function Shipping({ goTo }) {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { isValid, errors },
+  } = useForm({ mode: "onChange", resolver: yupResolver(shippingSchema) });
+
+  const onSubmit = (values) => {
+    console.log(values);
+  };
+
   return (
     <>
       <div className="flex-grow">
@@ -10,24 +32,83 @@ function Shipping({ goTo }) {
               Where to ship
             </h1>
           </div>
-          <div className="flex flex-col h-full">
-            <p className="font-bold text-white text-2xl">Hello</p>
+          <div className="flex h-full">
+            <div className="flex flex-col w-1/2">
+              <form
+                id="formfield"
+                className="flex flex-col text-white"
+                onSubmit={handleSubmit(onSubmit)}
+              >
+                <div className="relative mb-2 pb-6">
+                  <input
+                    {...register("fullName")}
+                    defaultValue=""
+                    className="placeholder-white placeholder-opacity-20 bg-white bg-opacity-10 w-full rounded py-4 px-3"
+                    placeholder="Elon Musk"
+                  />
+                  <div className="absolute bottom-0 text-sm right-0 text-red-500">
+                    {errors.fullName?.message}
+                  </div>
+                </div>
+
+                <div className="relative mb-2 pb-6">
+                  <textarea
+                    {...register("fullAddress")}
+                    defaultValue=""
+                    rows={5}
+                    className="placeholder-white h-auto resize-none placeholder-opacity-20 bg-white bg-opacity-10 w-full rounded py-4 px-3"
+                    placeholder="45 rue du 1er mars 1943 &#13;&#10;69100 Villeurbanne"
+                  />
+                  <div className="absolute bottom-0 text-sm right-0 text-red-500">
+                    {errors.fullAddress?.message}
+                  </div>
+                </div>
+                <div className="relative mb-2 pb-6">
+                  <input
+                    {...register("email")}
+                    defaultValue=""
+                    className="placeholder-white placeholder-opacity-20 bg-white bg-opacity-10 w-full rounded py-4 px-3"
+                    placeholder="emusk@example.com"
+                  />
+                  <div className="absolute bottom-0 text-sm right-0 text-red-500">
+                    {errors.email?.message}
+                  </div>
+                </div>
+                <button type="submit"></button>
+              </form>
+            </div>
+            <div className="w-1/2 mb-8">
+              <div className="h-full ml-4 p-4 bg-black rounded bg-opacity-30">
+                <p className="text-white opacity-50 font-weight">
+                  {watch("fullName")}
+                </p>
+                <p className="text-white opacity-50 font-weight whitespace-pre-line">
+                  {watch("fullAddress")}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <div className="flex justify-between items-center px-4">
         <button
           onClick={() => goTo("step1")}
-          className="rounded-lg py-4 px-6 font-bold text-white border border-white border-opacity-10 bg-white bg-opacity-10 hover:bg-opacity-20"
+          className="rounded-lg py-4 px-6 font-bold text-white border border-white border-opacity-5 bg-white bg-opacity-10 hover:bg-opacity-20"
         >
           Go back
         </button>
-        <button
-          onClick={() => goTo("step3")}
-          className="rounded-lg py-4 px-6 font-bold text-white bg-indigo-800 hover:bg-opacity-90"
-        >
-          Continue to Payment
-        </button>
+        {isValid ? (
+          <button
+            onClick={onSubmit}
+            className="rounded-lg py-4 px-6 font-bold text-white bg-indigo-800 hover:bg-opacity-90"
+          >
+            Continue to Payment
+          </button>
+        ) : (
+          <button className="rounded-lg py-4 px-6 font-bold text-white bg-indigo-800 opacity-10 cursor-default">
+            Continue to Payment
+          </button>
+        )}
       </div>
     </>
   );

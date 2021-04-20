@@ -56,7 +56,7 @@ function Cart({
         </div>
       </div>
       <div className="flex justify-between items-center px-4">
-        <button className="rounded-lg py-4 px-6 font-bold text-white border border-white border-opacity-10 bg-white bg-opacity-10 hover:bg-opacity-20">
+        <button className="rounded-lg py-4 px-6 font-bold text-white border border-white border-opacity-5 bg-white bg-opacity-10 hover:bg-opacity-20">
           Go back
         </button>
         <button
