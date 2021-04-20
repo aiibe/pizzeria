@@ -1,0 +1,7 @@
+main {
+  min-height: 40rem;
+
+  & > div {
+    max-height: 43rem;
+  }
+}
