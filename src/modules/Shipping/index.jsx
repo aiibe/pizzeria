@@ -29,21 +29,24 @@ function Shipping({ goTo }) {
         <div className="flex flex-col h-full px-4">
           <div className="mb-4">
             <h1 className="font-bold text-2xl text-white text-opacity-20">
-              Where to ship
+              Deliver at your door
             </h1>
           </div>
           <div className="flex h-full">
-            <div className="flex flex-col w-1/2">
+            <div className="flex flex-col w-4/5">
               <form
                 id="formfield"
                 className="flex flex-col text-white"
                 onSubmit={handleSubmit(onSubmit)}
               >
-                <div className="relative mb-2 pb-6">
+                <div className="relative flex mb-2 pb-6">
+                  <label className="font-bold w-1/5 mr-4 text-right">
+                    Full Name
+                  </label>
                   <input
                     {...register("fullName")}
                     defaultValue=""
-                    className="placeholder-white placeholder-opacity-20 bg-white bg-opacity-10 w-full rounded py-4 px-3"
+                    className="placeholder-white placeholder-opacity-20 bg-white bg-opacity-10 flex-grow rounded py-4 px-3"
                     placeholder="Elon Musk"
                   />
                   <div className="absolute bottom-0 text-sm right-0 text-red-500">
@@ -51,23 +54,29 @@ function Shipping({ goTo }) {
                   </div>
                 </div>
 
-                <div className="relative mb-2 pb-6">
+                <div className="relative flex mb-2 pb-6">
+                  <label className="font-bold w-1/5 mr-4 text-right">
+                    Full Address
+                  </label>
                   <textarea
                     {...register("fullAddress")}
                     defaultValue=""
                     rows={5}
-                    className="placeholder-white h-auto resize-none placeholder-opacity-20 bg-white bg-opacity-10 w-full rounded py-4 px-3"
+                    className="placeholder-white h-auto resize-none placeholder-opacity-20 bg-white bg-opacity-10 flex-grow rounded py-4 px-3"
                     placeholder="45 rue du 1er mars 1943 &#13;&#10;69100 Villeurbanne"
                   />
                   <div className="absolute bottom-0 text-sm right-0 text-red-500">
                     {errors.fullAddress?.message}
                   </div>
                 </div>
-                <div className="relative mb-2 pb-6">
+                <div className="relative flex mb-2 pb-6">
+                  <label className="font-bold w-1/5 mr-4 text-right">
+                    Email
+                  </label>
                   <input
                     {...register("email")}
                     defaultValue=""
-                    className="placeholder-white placeholder-opacity-20 bg-white bg-opacity-10 w-full rounded py-4 px-3"
+                    className="placeholder-white placeholder-opacity-20 bg-white bg-opacity-10 flex-grow rounded py-4 px-3"
                     placeholder="emusk@example.com"
                   />
                   <div className="absolute bottom-0 text-sm right-0 text-red-500">
@@ -76,16 +85,6 @@ function Shipping({ goTo }) {
                 </div>
                 <button type="submit"></button>
               </form>
-            </div>
-            <div className="w-1/2 mb-8">
-              <div className="h-full ml-4 p-4 bg-black rounded bg-opacity-30">
-                <p className="text-white opacity-50 font-weight">
-                  {watch("fullName")}
-                </p>
-                <p className="text-white opacity-50 font-weight whitespace-pre-line">
-                  {watch("fullAddress")}
-                </p>
-              </div>
             </div>
           </div>
         </div>
