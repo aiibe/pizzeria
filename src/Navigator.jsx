@@ -1,22 +1,27 @@
-import { connect } from "react-redux";
+import Steps from "./modules/Steps";
 import Cart from "./modules/Cart";
+import Payment from "./modules/Payment";
 import Shipping from "./modules/Shipping";
 
-function Navigator({ currentStep }) {
-  switch (currentStep) {
-    case "step1":
-      return <Cart />;
-    case "step2":
-      return <Shipping />;
-    default:
-      return null;
-  }
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+function Navigator() {
+  return (
+    <Router>
+      <Steps />
+      <Switch>
+        <Route path="/payment">
+          <Payment />
+        </Route>
+        <Route path="/delivery">
+          <Shipping />
+        </Route>
+        <Route path="/">
+          <Cart />
+        </Route>
+      </Switch>
+    </Router>
+  );
 }
 
-function mapStateProps({ currentStep }) {
-  return {
-    currentStep,
-  };
-}
-
-export default connect(mapStateProps)(Navigator);
+export default Navigator;

@@ -1,14 +1,9 @@
 import Order from "./Order";
+import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 
-function Cart({
-  cart,
-  goTo,
-  removeOrder,
-  incrementOrder,
-  decrementOrder,
-  currency,
-}) {
+function Cart({ cart, removeOrder, incrementOrder, decrementOrder, currency }) {
+  const history = useHistory();
   const total = cart.reduce(
     (sum, order) => (sum += order.count * order.item.price),
     0
@@ -59,12 +54,18 @@ function Cart({
         <button className="rounded-lg py-4 px-6 font-bold text-white border border-white border-opacity-5 bg-white bg-opacity-10 hover:bg-opacity-20">
           Go back
         </button>
-        <button
-          onClick={() => goTo("step2")}
-          className="rounded-lg py-4 px-6 font-bold text-white bg-indigo-800 hover:bg-opacity-90"
-        >
-          Continue to Shipping
-        </button>
+        {cart.length ? (
+          <button
+            onClick={() => history.push("/delivery")}
+            className="rounded-lg py-4 px-6 font-bold text-white bg-indigo-800 hover:bg-opacity-90"
+          >
+            Continue to Delivery
+          </button>
+        ) : (
+          <button className="rounded-lg py-4 px-6 font-bold text-white bg-indigo-800 opacity-10 cursor-default">
+            Continue to Delivery
+          </button>
+        )}
       </div>
     </>
   );
@@ -79,7 +80,6 @@ const mapStateProps = ({ cart, currency }) => {
 
 function mapDispatchProps(dispatch) {
   return {
-    goTo: (step) => dispatch({ type: "NAVIGATE", payload: step }),
     incrementOrder: (id) =>
       dispatch({
         type: "INCREMENT",

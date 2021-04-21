@@ -1,13 +1,15 @@
 import { combineReducers, createStore } from "redux";
 import cartReducer from "./cart";
-import stepReducer from "./step";
 import currencyReducer from "./currency";
+import deliveryReducer from "./delivery";
+import paymentReducer from "./payment";
 
 // Combine all stores
 const rootReducer = combineReducers({
   cart: cartReducer,
-  currentStep: stepReducer,
   currency: currencyReducer,
+  delivery: deliveryReducer,
+  payment: paymentReducer,
 });
 
 export default createStore(rootReducer);

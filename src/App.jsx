@@ -1,5 +1,4 @@
 import "./App.scss";
-import Steps from "./modules/Steps";
 import Navigator from "./Navigator";
 
 function App() {
@@ -7,7 +6,6 @@ function App() {
     <main className="fixed w-full h-full flex bg-indigo-600">
       <div className="flex-grow p-8 relative">
         <div className="flex flex-col max-w-4xl mx-auto p-6 h-full rounded-3xl bg-black bg-opacity-80 shadow-md">
-          <Steps />
           <Navigator />
         </div>
       </div>
